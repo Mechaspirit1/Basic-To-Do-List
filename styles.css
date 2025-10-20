@@ -1,0 +1,15 @@
+html{
+    font-family: "Montserrat";
+}
+
+button{
+    font-family: "Montserrat";
+    padding: 0.5% 1.5%;
+
+}
+
+#submit{
+    font-family: "Montserrat";
+    padding: 0.5%;
+    text-align: center;
+}
