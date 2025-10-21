@@ -5,6 +5,7 @@ const sub = document.querySelector("#btn");
 const list = document.querySelector("#list");
 const input = document.querySelector("#submit");
 const form = document.querySelector("#form");
+const count = document.querySelector("#counter");
 let first = true;
 let submissions = 1; //usado para loggar a quantidade de items na lista
 
@@ -15,6 +16,8 @@ sub.addEventListener("click",(e)=>{
     console.log(`${input.value}`);
     console.log(submissions);
 
+    count.textContent=`There are ${submissions} items in the list !`;
+
     //cria um elemento li e define o valor do texto como o texto do input
     const item = document.createElement("li");
     const itemCont = document.createTextNode(`${input.value}`)
@@ -22,7 +25,6 @@ sub.addEventListener("click",(e)=>{
     //cria uma checkbox para cada item adicionado a lista
     const check = document.createElement("input");
     check.type = 'checkbox';
-    check.id = 'chk';
 
     //adiciona o valor do input ao item e o adiciona a lista declarada no html
     item.appendChild(check);
@@ -30,7 +32,7 @@ sub.addEventListener("click",(e)=>{
     list.append(item);
 
     input.value = ""; //limpa a caixa de texotp após o envio 
-    submissions++; 
+    submissions++;
 
     //logica do botão de delete
     if(first === true){ //se a condição for verdadeira cria um botão de delete e o adiciona ao form
@@ -48,12 +50,14 @@ sub.addEventListener("click",(e)=>{
 
             list.removeChild(list.lastElementChild);
             submissions--; //remove 1 da variavel toda vez que o botão é clicado
+            count.textContent=`There are ${submissions-1} items in the list !`;
             console.log(submissions);
 
             //se não houverem mais items na lista o botão delete é removido e a condição volta a ser verdadeira
             //isso possibilita a criação de um novo botão caso novos items sejam postos na lista vazia
             if(submissions<=1){
                 form.removeChild(form.lastElementChild);
+                count.textContent=`Add some items to the list !`;
                 first = true;
             }
         });
@@ -62,4 +66,3 @@ sub.addEventListener("click",(e)=>{
         return 0;
     }
 });
-
